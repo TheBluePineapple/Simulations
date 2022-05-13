@@ -1,5 +1,5 @@
-# Simulations
-A bunch of random simulations(Pathfinding, fractals etc.) and graphics using the html5 canvas element
+# HTML5 Canvas Projects and Simulations
+A bunch of random simulations(Pathfinding, physics simulations, fractals etc.) and graphics using the html5 canvas element
 
   
     
