@@ -1,0 +1,20 @@
+body{
+    background-color: black;
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+#container{
+    display:flex;
+    margin-top: 2.5%;
+    justify-content: center;
+    align-items: center;    
+}
+#canvas1{
+    border:1px solid white;
+}
+h1{
+    padding-top:20px;
+    color:white;
+    text-align: center;
+}
