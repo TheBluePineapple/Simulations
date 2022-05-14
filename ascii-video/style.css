@@ -1,0 +1,16 @@
+body {
+    background-color: black;
+    margin: 0px;
+    padding: 0px;
+    /* overflow: hidden; */
+    color: white;
+
+}
+
+#ascii,
+.uploaded {
+    font-family: "Courier";
+    font-size: 10px;
+    line-height: 10px;
+
+}

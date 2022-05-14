@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    </link>
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div>
+        <div class="slidecontainer">Resolution: <input type="range" min="0.05" max="0.2" value="0.05" step="0.01"
+                id="resolution"></div>
+        <div>Toggle Video:<input type="checkbox" id="toggleCamera" checked /></div>
+    </div>
+    <button onclick="copyAscii()">Copy Ascii</button>
+    <input id="inputImage" type="file" accept="image/*, video/*">
+
+    <div id="ascii"></div>
+    <div id="upload-container"></div>
+    <canvas id="canvas1"></canvas>
+    <!-- onload="init"-->
+    <script src="script.js"></script>
+</body>
+
+</html>
