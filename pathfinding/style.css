@@ -1,0 +1,21 @@
+*{
+    padding:0px;
+    margin:8px;
+    box-sizing: border-box;
+
+}
+body{
+    background-color: black;
+}
+
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#canvas1 {
+    outline: 2px solid white;
+}
+        
