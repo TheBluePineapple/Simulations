@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <!--Basically just added limitations-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<link rel="stylesheet"type="text/css" href="style.css">-->
+    <style>
+        body{
+        background-color: black;
+        /* margin:0;
+        padding:0; */
+        box-sizing:border-box;
+        }
+        #container{
+            display:flex; 
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        
+        
+        }
+        canvas{
+            border:1px solid white;
+        }
+    </style>
+    <title>Metaballs III</title>
+
+</head>
+<body>
+        <h3 style="color:white; text-align:center;">Click For Negative Metaball</h3>
+    <div id = "container">
+        <canvas id="canvas1" width="400" height="400"></canvas>
+    </div>
+    <script type="application/javascript">
+        var mouseIsPressed = false;
+        document.body.onmousedown=function(){
+            mouseIsPressed=true;
+        };
+        document.body.onmouseup=function(){
+            mouseIsPressed=false;
+        };
+        var canvas = document.getElementById('canvas1');
+        var ctx = canvas.getContext('2d');
+        
+        
+        canvas.width = 300;
+        canvas.height =300;
+        var mouse = {
+            x:null,
+            y:null,
+        };
+        canvas.addEventListener("mousemove",(e)=>{
+            mouse.x = e.offsetX;
+            mouse.y = e.offsetY;
+        });
+        var dist = function(x1,y1,x2,y2){
+            return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2))
+        };
+        
+        var limit = 200;//in order to draw pixel, must have value greater than this 
+        var numBalls = 2;
+
+        var blobs = [];
+        var Blob = function(x,y,z){
+            // constructor(x,y,z){
+                this.x=x;
+                this.y=y;
+           
+                this.vx=Math.random();
+                this.vy=Math.random();
+                
+                this.z=z;
+            // }
+            this.draw = function(){
+                ctx.strokeStyle = "red";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.z, 0, Math.PI*2);
+                ctx.stroke();
+            } 
+            this.update=function(){
+                this.x+=this.vx;
+                this.y+=this.vy; 
+                if(this.x+this.z>canvas.width||this.x-this.z<0){
+                    this.vx*=-1;
+                }
+                if(this.y-this.z<0||this.y+this.z>canvas.height){
+                    this.vy*=-1;
+                }
+            }
+        }
+        
+        for(var i = 0; i<numBalls;i++){
+            blobs.push(new Blob(20+Math.random()*(canvas.width-40),20+Math.random()*(canvas.height-40),20));
+        }
+        var mBlob = new Blob(0,0,10);
+        
+        (function loop(){
+            // ctx.clearRect(0,0,canvas.width,canvas.height);
+        
+        
+            var imgData = new ImageData(canvas.width,canvas.height);
+            var pixels = imgData.data;
+            
+            var i = 0; 
+            while (i < pixels.length) { 
+                var col = 0;
+                var x = (i / 4) % canvas.width;
+                var y = Math.floor((i / 4) / canvas.width);
+                
+                blobs.forEach((b)=>{
+                    col += 250*b.z/dist(x,y,b.x,b.y);
+                });
+                if(mouseIsPressed){
+                    col-=250*mBlob.z/dist(x,y,mBlob.x,mBlob.y);
+                    col = col>limit?col:255+col;
+                }else{
+                    col+=250*mBlob.z/dist(x,y,mBlob.x,mBlob.y);
+                }
+                
+                col = col>limit?col:0;
+                
+                // pixels[i++] = col>120?col:0;
+                // pixels[i++] = col>20?col:0;
+                // pixels[i++] = col>20?col:0;
+                pixels[i++] = col/3;
+                pixels[i++] = col/2;
+                pixels[i++] = col;
+                pixels[i++] = 255;
+            } 
+            blobs.forEach((b)=>{
+                b.update();
+            });
+            mBlob.x= mouse.x;
+            mBlob.y=mouse.y;
+            ctx.putImageData(imgData,0,0);
+            // b.draw();
+            window.requestAnimationFrame(loop);
+        }());
+    </script>
+    <script>Math.random();</script>
+    
+    
+</body>
+</html>
