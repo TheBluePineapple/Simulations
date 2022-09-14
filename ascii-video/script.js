@@ -55,7 +55,7 @@ Fix oposite 0,len len,0
 */
 
 var asciiDiv = document.getElementById('ascii');
-const density = "Ñ@#W$9876543210?!abc;:+=-,..__                     ";
+const density = "Ñ@#W$910?!abc;:+=-,..__                     ";
 // const density = "████████▓▒░─        ";
 var copyAscii = function () {
     let text = asciiDiv.innerText;
@@ -70,7 +70,7 @@ var copyAscii = function () {
     });
 };
 var imageToAscii = function (pixels) {
-    var asciiImage = "";
+    var asciiImage = "<br/><br/>";
     for (let j = 0; j < pixels.height; j++) {
         for (let i = 0; i < pixels.width; i++) {
             let pixel = (i + j * pixels.width) * 4;
