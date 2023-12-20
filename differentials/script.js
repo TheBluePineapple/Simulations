@@ -357,7 +357,7 @@ let density = 60;
 let particles = [];
 for(let i = 0; i<density; i++){
     for(let j = 0; j<density; j++){
-        particles.push(new Particle(new PVector(i*(width/density)+width/density/2,j*(height/density)+height/density/2),width/density/2,map(i+j+5*Math.random(),0,density+density,0,255)))
+        particles.push(new Particle(new PVector(i*(width/density)+width/density/2,j*(height/density)+height/density/2),width/density/2,map(i+j+5*Math.random(),0,density+density-10,0,255)))
     }
 }
 
@@ -384,7 +384,7 @@ function loop(){
       particles = [];
       for(let i = 0; i<density; i++){
         for(let j = 0; j<density; j++){
-          particles.push(new Particle(new PVector(i*(width/density)+width/density/2,j*(height/density)+height/density/2),width/density/2,map(i+j+5*Math.random(),0,density+density,0,255)))
+          particles.push(new Particle(new PVector(i*(width/density)+width/density/2,j*(height/density)+height/density/2),width/density/2,map(i+j+5*Math.random(),0,density+density-10,0,255)))
         }
       }
     }
